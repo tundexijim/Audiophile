@@ -1,11 +1,10 @@
-"use client"
+// "use client"
 import React, { useRef} from 'react'
 import { useCart } from 'react-use-cart'
 import CartProduct from './CartProduct';
 import Link from 'next/link';
 const Cart = ({setShowCart}) => {
     const {items, updateItemQuantity, emptyCart} = useCart();
-    // const total = (items.map(item => item.itemTotal)).reduce((acc, b) => acc + b);
     const total = items.reduce((acc, item) => acc + item.itemTotal, 0);
     const overlayRef = useRef(null)
     const closeCart = (e) => {
@@ -28,7 +27,7 @@ const Cart = ({setShowCart}) => {
                         <span className='text-[15px] opacity-50 uppercase'>Total</span>
                         <h4 className='text-[18px] font-bold'>${new Intl.NumberFormat('en-US').format(total)}</h4>
                     </div> 
-                    <Link href={items.length !== 0 ? "/checkout" : ""}><button className='bg-[#D87D4A] w-[100%] py-[15px] uppercase text-[13px] font-bold text-white' disabled={items.length === 0}>checkout</button></Link>
+                    <Link href={items.length !== 0 ? "/checkout" : ""}><button className='bg-[#D87D4A] w-[100%] py-[15px] uppercase text-[13px] font-bold text-white' disabled={items.length === 0} onClick={() => setShowCart(false)}>checkout</button></Link>
                 </div> : null} 
             </div>
         </div>

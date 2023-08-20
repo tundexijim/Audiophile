@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 import React, {useEffect, useState} from 'react'
 import Image from 'next/image'
 const CartProduct = ({item, updateItemQuantity}) => {
@@ -10,7 +10,7 @@ const CartProduct = ({item, updateItemQuantity}) => {
     <div className='flex justify-between items-center'>
         <div className='flex gap-4 items-center'>
             <picture>
-                <Image src={item.image.desktop} alt="product" width={64} height={64}/>
+                <Image src={item.image.desktop} alt="product" width={64} height={64} className='w-auto h-auto'/>
             </picture>
             <div className=''>
                 <h4 className='text-[15px] font-bold'>{item.short}</h4>
