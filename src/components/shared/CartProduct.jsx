@@ -1,8 +1,17 @@
 // "use client"
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useCallback} from 'react'
 import Image from 'next/image'
 const CartProduct = ({item, updateItemQuantity}) => {
     const [updatedQuantity, setupdatedQuantity] = useState(item.quantity)
+
+    const handleQuantityDecrease = useCallback(() => {
+        setupdatedQuantity(prev => Math.max(prev - 1, 1));
+      }, []);
+
+      const handleQuantityIncrease = useCallback(() => {
+        setupdatedQuantity(prev => prev + 1);
+      }, []);
+
     useEffect(()=>{
         updateItemQuantity(item.id, updatedQuantity)
     },[item.id, updatedQuantity])
@@ -18,9 +27,9 @@ const CartProduct = ({item, updateItemQuantity}) => {
             </div>
         </div>
             <div className=' flex justify-between w-[96px] bg-[#F1F1F1] px-[7px] py-[11px]'>
-                <button className='opacity-25' onClick={() => setupdatedQuantity(prev=>prev-1)} disabled={updatedQuantity===1}>-</button>
+                <button className='opacity-25' onClick={handleQuantityDecrease} disabled={updatedQuantity===1}>-</button>
                 <span>{updatedQuantity}</span>
-                <button className='opacity-25' onClick={() => setupdatedQuantity(prev=>prev+1)}>+</button>
+                <button className='opacity-25' onClick={handleQuantityIncrease}>+</button>
             </div>
         </div>
   )
