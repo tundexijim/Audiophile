@@ -14,7 +14,7 @@ const CartProduct = ({item, updateItemQuantity}) => {
 
     useEffect(()=>{
         updateItemQuantity(item.id, updatedQuantity)
-    },[item.id, updatedQuantity])
+    },[updatedQuantity])
   return (
     <div className='flex justify-between items-center'>
         <div className='flex gap-4 items-center'>
