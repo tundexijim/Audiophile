@@ -1,19 +1,14 @@
-"use client"
 import { Form, Formik } from 'formik'
 import React, {useState} from 'react'
 import TextInput from './TextInput'
 import { initialValues } from './utils/forminitialvalues';
 import { validationSchema } from './utils/formvalidation';
 import PaymentButtons from './PaymentButtons';
-import { useRouter } from 'next/navigation';
 import _ from 'lodash';
 const FormContent = () => {
-    const router = useRouter()
    const [method, setMethod] = useState('e-money')
   return (
-    <div>
-    <button className='opacity-50 text-[15px]' onClick={router.back}>Go Back</button>
-        <div className='px-6 pt-6 pb-[31px] mt-6 bg-white rounded-lg'>
+        <div className='px-6 pt-6 pb-[31px] bg-white rounded-lg lg:w-[70%] lg:px-12 lg:pt-[54px] lg:pb-[48px]'>
              <h1 className='mb-8 text-[28px] uppercase font-bold'>Checkout</h1>
              <Formik initialValues={initialValues} validationSchema={validationSchema}>
              {(formik) =><Form>
@@ -60,11 +55,11 @@ const FormContent = () => {
                     }
                     {
                     method == "cash-on-delivery" &&
-                    <div className=''>
+                    <div className='flex justify-between'>
                         <figure>
                             <img src="/delivery.png" alt="delivery" />
                         </figure>
-                        <p>The ‘Cash on Delivery’ option enables you to pay in cash when our delivery courier arrives at your residence. Just make sure your address is correct so that your order will not be cancelled.</p>
+                        <p className='opacity-50'>The ‘Cash on Delivery’ option enables you to pay in cash when our delivery courier arrives at your residence. Just make sure your address is correct so that your order will not be cancelled.</p>
                     </div>
                     }
                 </div>
@@ -72,7 +67,6 @@ const FormContent = () => {
             </Form>}
             </Formik>
         </div>
-    </div>
   )
 }
 

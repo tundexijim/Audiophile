@@ -13,7 +13,7 @@ const Cart = ({setShowCart}) => {
         }
     }
   return (
-    <div className='fixed h-[100vh] w-screen top-0 left-0 z-20 px-6' style={{backgroundColor: 'rgba(0,0,0,0.5)'}} ref={overlayRef} onClick={closeCart}>
+    <div className='fixed h-[100vh] w-screen top-0 left-0 z-20 px-6 overflow-scroll' style={{backgroundColor: 'rgba(0,0,0,0.5)'}} ref={overlayRef} onClick={closeCart}>
             <div className=' relative top-24 bg-white p-8 rounded-lg flex flex-col gap-8 lg:absolute lg:w-[377px] lg:right-[165px]'>
                 <div className='flex justify-between'>
                     <h3 className='text-[18px] font-bold uppercase'>Cart ({items.length})</h3>
