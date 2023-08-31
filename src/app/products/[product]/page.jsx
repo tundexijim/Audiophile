@@ -1,7 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import { productData } from '@/utils/filterdata'
-import data from '../../../../src/data.json'
+import { getallProducts } from '@/utils/getallProducts';
 import ProductDetail from '@/components/productdetails/ProductDetail';
 import Features from '@/components/productdetails/Features';
 import Gallery from '@/components/productdetails/Gallery';
@@ -9,9 +8,21 @@ import Others from '@/components/productdetails/Others';
 import Category from '@/components/shared/Category';
 import BottomInfo from '@/components/shared/BottomInfo';
 const Button = dynamic(() => import('@/components/productdetails/Button'), { ssr: false })
-const productpage = ({params}) => {
+
+const getData = async (product) =>{
+  const res = await fetch(`http://localhost:3000//api/products/${product}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed!");
+  }
+
+  return res.json();
+}
+const productpage = async ({params}) => {
   const {product} = params;
-  const Product = productData(data, product)
+  const Product = await getData(product)
   const { id,name, new: is_new, description, price, image } = Product
     const { features, includes } = Product
     const { gallery } = Product
@@ -30,8 +41,9 @@ const productpage = ({params}) => {
   )
 }
 
-export const generateStaticParams = () => {
-  return data.map((product) => ({
+export const generateStaticParams = async () => {
+  const Products = await getallProducts()
+  return Products.map(product => ({
       product: product.slug,
     }))
   }

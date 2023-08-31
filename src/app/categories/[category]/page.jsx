@@ -1,13 +1,24 @@
 import React from 'react'
-import { categoryData } from '@/utils/filterdata'
-import data from '../../../../src/data.json' 
+import { getallProducts } from '@/utils/getallProducts'
 import Link from 'next/link'
 import Image from 'next/image'
 import Category from '@/components/shared/Category'
 import BottomInfo from '@/components/shared/BottomInfo'
-const categorypage = ({params}) => {
+
+const getData = async (category) =>{
+  const res = await fetch(`http://localhost:3000/api/categories/${category}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed!");
+  }
+  return res.json();
+
+}
+const categorypage = async ({params}) => {
   const {category} = params
- const newdata = categoryData(data, category)
+ const newdata = await getData(category)
   return (
     <div>
       <div className='relative bg-[#191919] flex justify-center h-[192px] lg:h-[336px]'><h2 className=' absolute text-white bottom-[32px] uppercase text-[28px] font-bold lg:bottom-[97px] lg:text-[40px]'>{category}</h2></div>
@@ -35,8 +46,9 @@ const categorypage = ({params}) => {
     </div>
   )
 }
-export const generateStaticParams = () => {
-return data.map((product) => ({
+export const generateStaticParams = async () => {
+ const Products = await getallProducts()
+return Products.map(product => ({
     category: product.category,
   }))
 }

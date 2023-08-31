@@ -1,6 +1,6 @@
 import React from 'react'
 import parse from 'html-react-parser';
-import Image from 'next/image'
+
 const Features = ({features, include}) => {
   return (
     <div className='mt-[88px] px-6 flex flex-col gap-[88px] lg:flex-row lg:px-[165px] lg:gap-[125px]'>
