@@ -10,7 +10,7 @@ import BottomInfo from '@/components/shared/BottomInfo';
 const Button = dynamic(() => import('@/components/productdetails/Button'), { ssr: false })
 
 const getData = async (product) =>{
-  const res = await fetch(`http://localhost:3000//api/products/${product}`, {
+  const res = await fetch(`${process.env.BASE_URL}//api/products/${product}`, {
     cache: "no-store",
   });
 

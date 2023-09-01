@@ -6,7 +6,7 @@ import Category from '@/components/shared/Category'
 import BottomInfo from '@/components/shared/BottomInfo'
 
 const getData = async (category) =>{
-  const res = await fetch(`http://localhost:3000/api/categories/${category}`, {
+  const res = await fetch(`${process.env.BASE_URL}/api/categories/${category}`, {
     cache: "no-store",
   });
 
