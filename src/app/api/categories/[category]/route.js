@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import data from '../../../../../src/data.json'
+import data from  '../../../../../public/data.json'
 
 export const GET = async (req, {params})=>{
 try{

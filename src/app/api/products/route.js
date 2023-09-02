@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server';
-import data from '../../../../src/data.json'
+import data from '../../../../public/data.json'
 
 export const GET = async ()=>{
 try{
-    // console.log(params)
     return new NextResponse(JSON.stringify(data),
     { status: 200 }
   );
